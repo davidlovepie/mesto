@@ -58,12 +58,12 @@ submit.addEventListener('click', ()=> {
 
 
 
-likeButton.addEventListener('click', () => {
-  let likeButton = page.querySelector('.elements__like-button');
-  likeButton.classList.remove('elements__like-button');
-  likeButton.classList.add('elements__like-button_active');
+// likeButton.addEventListener('click', () => {
+//   let likeButton = page.querySelector('.elements__like-button');
+//   likeButton.classList.remove('elements__like-button');
+//   likeButton.classList.add('elements__like-button_active');
   
-})
+// })
 
 
 
