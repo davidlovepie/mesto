@@ -17,6 +17,6 @@
 * Не сойти с ума
 * Джава скрипт тяжело дается
 
-###https://davidlovepie.github.io/russian-travel/
+###https://davidlovepie.github.io/mesto/
 
 
