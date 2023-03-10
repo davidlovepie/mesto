@@ -8,6 +8,8 @@
  margin-bottom: 36px;
 outline: 2px solid #ffffff;
   background-color: #000000;
+color: white;
+font-size: 38px;
 }
 
 .profile__add:hover {
