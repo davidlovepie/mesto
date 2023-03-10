@@ -5,7 +5,7 @@ let profile = content.querySelector('.profile');
 let profileInformation = profile.querySelector('.profile__information');
 let editButton = profileInformation.querySelector('.profile__edit');
 let closeButton = popup.querySelector('.popup__close-button');
-let likeButton = page.querySelector('.elements__like-button');
+// let likeButtonOn = page.querySelector('.elements__like-button_disabled');
 
 function openPopup () {
   let popup = page.querySelector('.popup');
@@ -57,23 +57,22 @@ submit.addEventListener('click', ()=> {
 })
 
 
+// function likeOn () {
+//   let likeButtonOn = page.querySelector('.elements__like-button_disabled');
+//   likeButtonOn.setAttribute('style', 'background-image: url(../../../../images/likeactive.png);');
+// } 
 
-// likeButton.addEventListener('click', () => {
-//   let likeButton = page.querySelector('.elements__like-button');
-//   likeButton.classList.remove('elements__like-button');
-//   likeButton.classList.add('elements__like-button_active');
-  
-// })
-
+// likeButtonOn.addEventListener('click', likeOn)  
 
 
 
+// let likeOn = page.querySelectorAll('.elements__like-button_disabled');
+// for (var i=0; i < likeOn.length; i++) {
+//   likeOn[i].setAttribute('style', 'background-image: url(../../../../images/likeactive.png);');
 
+// }
 
-
-
-
-
+// likeButtonOn.addEventListener('click', likeOn)
 
 
 
