@@ -5,8 +5,8 @@ let editButton = page.querySelector('.profile__edit');
 let closeButton = page.querySelector('.popup__close-button');
 let authorName = document.querySelector('.profile__author');
 let authorAbout = document.querySelector('.profile__about');
-let name = document.querySelector('.popup__author_name');
-let about = document.querySelector('.popup__author_about');
+let name = document.querySelector('.popup__input_author-name');
+let about = document.querySelector('.popup__input_author-about');
 let submit = page.querySelector('.popup__submit');
 // let likeButtonOn = page.querySelector('.elements__like-button_disabled');
 
