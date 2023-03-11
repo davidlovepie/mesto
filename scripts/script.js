@@ -7,7 +7,7 @@ let authorName = document.querySelector('.profile__author');
 let authorAbout = document.querySelector('.profile__about');
 let name = document.querySelector('.popup__input_author-name');
 let about = document.querySelector('.popup__input_author-about');
-let submit = page.querySelector('.popup__submit');
+let form = page.querySelector('.popup__form');
 // let likeButtonOn = page.querySelector('.elements__like-button_disabled');
 
 function openPopup() {
@@ -30,11 +30,11 @@ function editProfile() {
 
 }
 
-submit.addEventListener('click', () => {
-
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
   authorName.textContent = name.value;
   authorAbout.textContent = about.value;
-
+  
   closePopup();
 
 })
