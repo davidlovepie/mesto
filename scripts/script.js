@@ -5,8 +5,8 @@ let editButton = page.querySelector('.profile__edit');
 let closeButton = page.querySelector('.popup__close-button');
 let authorName = document.querySelector('.profile__author');
 let authorAbout = document.querySelector('.profile__about');
-let name = document.querySelector('.popup__input_author-name');
-let about = document.querySelector('.popup__input_author-about');
+let nameInput = document.querySelector('.popup__input_author-name');
+let aboutInput = document.querySelector('.popup__input_author-about');
 let form = page.querySelector('.popup__form');
 // let likeButtonOn = page.querySelector('.elements__like-button_disabled');
 
@@ -25,15 +25,15 @@ closeButton.addEventListener('click', closePopup);
 
 function editProfile() {
 
-  name.value = authorName.textContent;
-  about.value = authorAbout.textContent;
+  nameInput.value = authorName.textContent;
+  aboutInput.value = authorAbout.textContent;
 
 }
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  authorName.textContent = name.value;
-  authorAbout.textContent = about.value;
+  authorName.textContent = nameInput.value;
+  authorAbout.textContent = aboutInput.value;
   
   closePopup();
 
