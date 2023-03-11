@@ -57,5 +57,3 @@ editProfile();
 
 // likeButtonOn.addEventListener('click', likeOn)
 
-
-
