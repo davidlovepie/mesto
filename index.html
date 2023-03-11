@@ -12,20 +12,6 @@
 
 <body class="page">
 
-  <div class="popup">
-    <div class="popup__container">
-      <button type="button" class="popup__close-button"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form">
-        <fieldset class="popup__info">
-          <input class="popup__input popup__author-name" type="text" minlength="2" maxlength="30"
-            placeholder="Ваше имя">
-          <input class="popup__input popup__author-about" type="text" minlength="2" maxlength="30" placeholder="О себе">
-          <button class="popup__submit" type="button">Сохранить</button>
-        </fieldset>
-      </form>
-    </div>
-  </div>
   <header class="header">
     <img class="header__logo" src="./images/logo.svg" alt="Логотип">
   </header>
@@ -39,7 +25,7 @@
         </div>
         <p class="profile__about">Исследователь океана</p>
       </div>
-      <button type="button" class="profile__add">+</button>
+      <button type="button" class="profile__add"></button>
     </section>
     <section class="elements" aria-label="Фотогалерея">
       <ul class="elements__list">
@@ -47,42 +33,42 @@
           <img class="elements__image" src="./images/karachaev.png" alt="Горы Карачаево-Черкесии">
           <div class="elements__info">
             <h2 class="elements__title">Карачаевск</h2>
-            <button type="button" class="elements__like-button elements__like-button_disabled"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
         <li class="elements__item">
           <img class="elements__image" src="./images/elbrus.png" alt="Гора Эльбрус">
           <div class="elements__info">
             <h2 class="elements__title">Гора Эльбрус</h2>
-            <button type="button" class="elements__like-button elements__like-button_disabled"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
         <li class="elements__item">
           <img class="elements__image" src="./images/Dombai.png" alt="Виды на Домбай">
           <div class="elements__info">
             <h2 class="elements__title">Домбай</h2>
-            <button type="button" class="elements__like-button elements__like-button_disabled"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
         <li class="elements__item">
           <img class="elements__image" src="./images/elbrus.png" alt="Гора Эльбрус">
           <div class="elements__info">
             <h2 class="elements__title">Гора Эльбрус</h2>
-            <button type="button" class="elements__like-button elements__like-button_disabled"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
         <li class="elements__item">
           <img class="elements__image" src="./images/Dombai.png" alt="Виды на Домбай">
           <div class="elements__info">
             <h2 class="elements__title">Домбай</h2>
-            <button type="button" class="elements__like-button elements__like-button_disabled"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
         <li class="elements__item">
           <img class="elements__image" src="./images/karachaev.png" alt="Виды на Карачаево-Черкессию">
           <div class="elements__info">
             <h2 class="elements__title">Карачаево-Черкессия</h2>
-            <button type="button" class="elements__like-button elements__like-button_disabled"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
       </ul>
@@ -91,7 +77,21 @@
   <footer class="footer">
     <p class="footer__author"> &#169; 2023. Девид Фан</p>
   </footer>
-  <script src="./pages/script.js"></script>
+
+  <div class="popup">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="name">
+        <fieldset class="popup__info">
+          <input class="popup__input popup__author_name" type="text" placeholder="Ваше имя">
+          <input class="popup__input popup__author_about" type="text" placeholder="О себе">
+          <button class="popup__submit" type="button">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <script src="./scripts/script.js"></script>
 </body>
 
 </html>

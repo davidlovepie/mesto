@@ -1,13 +1,15 @@
-.popup__input { 
+.popup__input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21px;
+  color: #000000;
+  margin-top: 46px;
+  padding-bottom: 8px;
   border: none;
-  border-bottom: 1px solid;
-  }
-  
-  @media screen and (max-width: 767px) {
-    .popup__input {
-  
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 1.21;
-    }
-  }
+  border-bottom: 1px solid #000000;
+}
+
+.popup__input:nth-child(2) {
+  margin-top: 29px;
+  padding-bottom: 8px;
+}

@@ -4,7 +4,7 @@
   max-width: 880px;
   padding: 50px 0 66px;
   display: grid;
-  grid-template-columns: repeat(auto-fit,282px);
+  grid-template-columns: repeat(auto-fit, 282px);
   justify-content: center;
   list-style-type: none;
   gap: 16px 17px;
@@ -17,4 +17,4 @@
     padding-bottom: 46px;
     gap: 17px 17px;
   }
-  }
+}

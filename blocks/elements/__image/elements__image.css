@@ -1,4 +1,5 @@
 .elements__image {
-  border-top-right-radius: 2%;
-  border-top-left-radius: 2%;
+  border-radius: 10px 10px 0px 0px;
+  max-width: 282px;
+  max-height: 282px;
 }

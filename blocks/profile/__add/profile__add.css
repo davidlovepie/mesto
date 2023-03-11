@@ -8,12 +8,13 @@
  margin-bottom: 36px;
 outline: 2px solid #ffffff;
   background-color: #000000;
-color: white;
-font-size: 38px;
+  background-image: url(../../../images/Plus.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile__add:hover {
-  opacity: 0.8;
+  opacity: 0.6;
   transition: opacity linear;
   cursor: pointer;
 }
@@ -22,8 +23,7 @@ font-size: 38px;
   .profile__add {
     min-width: 282px;
     min-height: 46px;
-    margin-top: 33px;
-    outline: 2px solid #ffffff;
-    background-color: #000000;
+    margin-top: 29px;
   }
   }
+  

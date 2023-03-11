@@ -1,7 +1,9 @@
 .profile__author {
   margin: 0;
   padding: 0;
-
+  overflow-wrap:break-word;
+  white-space: wrap;
+  overflow: hidden;
   margin-right: 24px;
 font-style: normal;
 font-weight: 500;
@@ -11,7 +13,8 @@ line-height: 1.14;
 
 @media screen and (max-width: 767px) {
   .profile__author {
-
+    margin-right: 9px;
+    margin-bottom: 9px;
   font-size: 27px;
   line-height: 1.2;
   }

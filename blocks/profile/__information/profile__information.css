@@ -6,7 +6,11 @@
 
 @media screen and (max-width: 767px) {
   .profile__information {
-    margin: 29px 0px 0px 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 29px 7px 4px 42px;
+
     max-width: 100%;
   }
-  }
+}
