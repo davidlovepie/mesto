@@ -1,4 +1,4 @@
 .profile__container {
-  align-items: baseline;
+  align-items: end;
   display: flex;
 }

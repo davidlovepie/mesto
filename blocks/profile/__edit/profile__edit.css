@@ -8,6 +8,7 @@
   min-width: 24px;
   min-height: 24px;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .profile__edit:hover {
@@ -18,7 +19,7 @@
 
 @media screen and (max-width: 767px) {
   .profile__edit {
-    max-width: 18px;
-    max-height: 18px;
+    background-size: 75%;
+    margin-bottom: 9px;
   }
 }
