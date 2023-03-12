@@ -10,6 +10,7 @@
   background: black;
   color: white;
   border: none;
+  border-radius: 2px;
 }
 
 .popup__submit:hover {
