@@ -83,6 +83,7 @@ function addImage(argumentOne, argumentTwo) {
   const elementTitle = cardElement.querySelector('.elements__title');
   const elementImage =  cardElement.querySelector('.elements__image');
 
+// увеличить картинки, передаем из темплейта в попап   
   elementImage.addEventListener('click', () => {
     
     imageEnlargePopup.classList.add('popup_opened');
