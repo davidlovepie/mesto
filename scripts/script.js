@@ -11,6 +11,9 @@ let nameInput = document.querySelector('input[name="nameInput"]');
 let aboutInput = document.querySelector('input[name="aboutInput"]');
 const profileEditForm = document.forms.editProfile;
 const imageProfileForm = document.forms.imageProfile;
+const imageEnlargePopup = page.querySelector('.popup_type_enlarge');
+const popupEnlarge = imageEnlargePopup.querySelector('.popup__image');
+const popupTitle = imageEnlargePopup.querySelector('.popup__title');
 
 const editImage = page.querySelector('.profile__add');
 const imageAddPopup = page.querySelector('.popup_type_images')
@@ -78,11 +81,20 @@ function addImage(argumentOne, argumentTwo) {
   const cardElement = elementTemplate.cloneNode(true);
 
   const elementTitle = cardElement.querySelector('.elements__title');
-  const elementSrc =  cardElement.querySelector('.elements__image');
+  const elementImage =  cardElement.querySelector('.elements__image');
 
+  elementImage.addEventListener('click', () => {
+    
+    imageEnlargePopup.classList.add('popup_opened');
+    popupTitle.textContent = elementTitle.textContent;
+   
+    popupEnlarge.src = elementImage.src;
+  });
 
-  cardElement.querySelector('.elements__title').textContent = argumentOne;
-  cardElement.querySelector('.elements__image').src = argumentTwo;
+  
+
+  elementTitle.textContent = argumentOne;
+  elementImage.src = argumentTwo;
 
   const buttonLike = cardElement.querySelector('.elements__like-button');
   const buttonDelete = cardElement.querySelector('.elements__delete');
