@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   max-width: 75vw;
-  max-height: 75vw;
+  max-height: 75vh;
   position: relative;
   background-color: transparent;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
