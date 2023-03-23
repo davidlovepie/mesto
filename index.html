@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Девид Фан">
-  <meta name="description" content="Проектная работа 4">
+  <meta name="description" content="Проектная работа 5">
   <title>Место</title>
 </head>
 
@@ -29,48 +29,7 @@
     </section>
     <section class="elements" aria-label="Фотогалерея">
       <ul class="elements__list">
-        <li class="elements__item">
-          <img class="elements__image" src="./images/karachaev.png" alt="Горы Карачаево-Черкесии">
-          <div class="elements__info">
-            <h2 class="elements__title">Карачаевск</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img class="elements__image" src="./images/photo-grid-elbrus.jpg" alt="Гора Эльбрус">
-          <div class="elements__info">
-            <h2 class="elements__title">Гора Эльбрус</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img class="elements__image" src="./images/Dombai.png" alt="Виды на Домбай">
-          <div class="elements__info">
-            <h2 class="elements__title">Домбай</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img class="elements__image" src="./images/elbrus.png" alt="Гора Эльбрус">
-          <div class="elements__info">
-            <h2 class="elements__title">Гора Эльбрус</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img class="elements__image" src="./images/Dombai.png" alt="Виды на Домбай">
-          <div class="elements__info">
-            <h2 class="elements__title">Домбай</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img class="elements__image" src="./images/karachaev.png" alt="Виды на Карачаево-Черкессию">
-          <div class="elements__info">
-            <h2 class="elements__title">Карачаево-Черкессия</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
+
       </ul>
     </section>
   </main>
@@ -78,11 +37,22 @@
     <p class="footer__author"> &#169; 2023. Девид Фан</p>
   </footer>
 
-  <div class="popup">
+  <template class="element-template">
+    <li class="elements__item">
+      <button type="button" class="elements__delete"></button>
+      <img class="elements__image" src="" alt="">
+      <div class="elements__info">
+        <h2 class="elements__title"></h2>
+        <button type="button" class="elements__like-button"></button>
+      </div>
+    </li>
+  </template>
+
+  <div class="popup popup_type_profile">
     <div class="popup__container">
       <button type="button" class="popup__close-button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="name">
+      <form class="popup__form" name="editProfile">
         <fieldset class="popup__info">
           <input class="popup__input" name="nameInput" type="text" placeholder="Ваше имя" required>
           <input class="popup__input" name="aboutInput" type="text" placeholder="О себе" required>
@@ -91,6 +61,30 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup_type_images">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="imageProfile">
+        <fieldset class="popup__info">
+          <input class="popup__input" name="titleInput" type="text" placeholder="Название" required>
+          <input class="popup__input" name="srcInput" type="text" placeholder="Ссылка на картинку" required>
+          <button class="popup__submit" type="submit">Создать</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_opened popup_type_enlarge">
+    <div class="popup__container popup__container_type_enlarge">
+      <button type="button" class="popup__close-button popup__close-button_type_enlarge"></button>
+      <img class="popup__image" src="" alt="">
+      <h2 class="popup__title popup__title_type_enlarge">Новое место</h2>
+    </div>
+  </div>
+
+
   <script src="./scripts/script.js"></script>
 </body>
 

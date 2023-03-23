@@ -1,0 +1,24 @@
+.popup__container_type_enlarge{
+ /* margin: 0;
+  padding: 0;
+  position: relative;
+  background-color: transparent;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  box-sizing: border-box;*/
+
+
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 75vw;
+  max-height: 75vw;
+  position: relative;
+  background-color: transparent;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
