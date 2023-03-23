@@ -7,4 +7,7 @@
   font-size: 12px;
   line-height: 1.25;
   max-width: 75vw;
+  position: absolute;
+  top: 732px;
+  right: 758px;
 }
