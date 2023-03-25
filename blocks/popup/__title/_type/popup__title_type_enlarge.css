@@ -1,13 +1,10 @@
 .popup__title_type_enlarge {
-  margin: 0;
-  padding: 0;
   color: #ffffff;
-  font-style: normal;
-  font-weight: 400;
   font-size: 12px;
-  line-height: 1.25;
-  max-width: 75vw;
-  position: absolute;
-  top: 732px;
-  right: 758px;
+  font-weight: 400;
+  line-height: 15px;
+  margin: 0;
+  padding: 10px 0 0;
+  text-align: left;
+  
 }
