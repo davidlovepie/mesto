@@ -200,25 +200,25 @@ editButton.addEventListener('click', editProfile);
 imageEdit.addEventListener('click', editImages);
 
 
-const obj = {
-  name: 'Девид',
-  age: 28,
-  surname: 'Фан'
-}
-console.log(obj.name)
+// const obj = {
+//   name: 'Девид',
+//   age: 28,
+//   surname: 'Фан'
+// }
+// console.log(obj.name)
 
 
-function dance(a, b){
+// function dance(a, b){
 
-  const cardElement = a + b;
+//   const cardElement = a + b;
 
-  return cardElement;
+//   return cardElement;
 
-}
+// }
 
-const c = dance(2, 2);
+// const c = dance(2, 2);
 
-console.log(c)
+// console.log(c)
 
 
 
