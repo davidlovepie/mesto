@@ -106,6 +106,7 @@ function addImage(cardData) {
   elementImage.src = cardData.link;
   elementImage.alt = cardData.name;
 
+
   const buttonLike = cardElement.querySelector('.elements__like-button');
   const buttonDelete = cardElement.querySelector('.elements__delete');
 
@@ -176,9 +177,16 @@ imageProfileForm.addEventListener('submit', (e) => {
   
 
    renderCard(card);
+   resetModalForm()
   closePopup(imageAddPopup);
 
 })
+
+function resetModalForm(){
+  titleInput.value = '';
+  srcInput.value = '';
+
+}
 
 // Использовал универсальную функцию, нужно повторить функции 
 
