@@ -16,7 +16,7 @@ const popupEnlarge = imageEnlargePopup.querySelector('.popup__image');
 const popupTitle = imageEnlargePopup.querySelector('.popup__title');
 const profileEdit = page.querySelector('.popup_type_profile');
 const imageEdit = page.querySelector('.profile__add');
-const imageAddPopup = page.querySelector('.popup_type_images')
+const imageAddPopup = page.querySelector('.popup_type_images');
 const imageAddPopupButton = imageAddPopup.querySelector('.popup__submit');
 // const profileClose = page.querySelector('.popup__close-button_type_profile');
 // const imagesClose = page.querySelector('.popup__close-button_type_images'); 
@@ -26,6 +26,8 @@ const srcInput = document.querySelector('input[name="srcInput"]');
 
 const elementsList = document.querySelector('.elements__list');
 const elementTemplate = document.querySelector('.element-template').content;
+
+
 
 
 
@@ -58,7 +60,26 @@ const initialCards = [
 // Открытие попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('mousedown', closePopupOverlay);
+  document.addEventListener('keydown', closePopupEsc);
 } 
+
+const closePopupOverlay = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened)
+  }
+
+}
+
+const closePopupEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened)
+  }
+}
+
+
 
 
 // Это поп ап профиля
@@ -80,6 +101,8 @@ function closePopup(popup) {
 
 function editImages() {
   openPopup(imageAddPopup);
+
+  setSubmitButtonState(false, imageAddPopupButton);
 }
 
 
@@ -229,9 +252,17 @@ imageEdit.addEventListener('click', editImages);
 // console.log(c)
 
 
+// function bag(useFirst, useSecond, useThird) {
+//   console.log(useSecond, useFirst, useThird)
+
+// }
+// bag(1,2,)
 
 
 
-
-
-
+/*const object = {
+name: 'Tom',
+id: 'Jerry'
+}
+console.log(object)
+console.log(`${object.id}-error`)*/
