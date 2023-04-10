@@ -93,8 +93,9 @@ function editProfile() {
 
 
 function closePopup(popup) {
-
   popup.classList.remove('popup_opened');
+  popup.removeEventListener('mousedown', closePopupOverlay);
+  document.removeEventListener('keydown', closePopupEsc);
   }
 
 
@@ -108,7 +109,7 @@ function editImages() {
 
 // добавление картинок
 function addImage(cardData) {
-  const cardElement = elementTemplate.cloneNode(true);
+  const cardElement = elementTemplate.querySelector('.elements__item').cloneNode(true);
 
   const elementTitle = cardElement.querySelector('.elements__title');
   const elementImage =  cardElement.querySelector('.elements__image');

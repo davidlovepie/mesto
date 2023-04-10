@@ -1,14 +1,17 @@
-function showInputError(formElement, inputElement, errorMessage) {
+
+
+
+function showInputError(formElement, inputElement, errorMessage, obj) {
   const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
-  inputElement.classList.add('popup__input_type_error');
+  inputElement.classList.add(obj.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_active');
+  errorElement.classList.add(obj.errorClass);
 };
 
-function hideInputError(formElement, inputElement) {
+function hideInputError(formElement, inputElement, obj) {
   const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popup__input-error_active');
+  inputElement.classList.remove(obj.inputErrorClass);
+  errorElement.classList.remove(obj.errorClass);
   errorElement.textContent = '';
 };
 
@@ -16,13 +19,13 @@ function checkInputValidity(formElement, inputElement, obj, inputList) {
   const formSubmitButton = formElement.querySelector(obj.submitButtonSelector);
 
   if (inputElement.validity.valid) {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, obj);
     setSubmitButtonState(setIsValid(inputList), formSubmitButton);
 
 
   } else {
 
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, obj);
     setSubmitButtonState(setIsValid(inputList), formSubmitButton);
 
   }
@@ -85,6 +88,6 @@ enableValidation({
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
   inactiveButtonClass: '.popup__submit_disabled',
-  inputErrorClass: '.popup__input_type_error',
-  errorClass: '.popup__input-error_active'
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
 }); 

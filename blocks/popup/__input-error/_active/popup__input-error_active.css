@@ -1,4 +1,6 @@
 .popup__input-error_active {
+  display: block;
+  min-height: 12px;
   max-width: 358px;
   color: red;
   font-weight: 400;
