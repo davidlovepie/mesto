@@ -1,55 +1,46 @@
 
 
-
+//Показыввает ошибку
 function showInputError(formElement, inputElement, errorMessage, obj) {
   const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
   inputElement.classList.add(obj.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(obj.errorClass);
 };
-
+//Убирает ошибку
 function hideInputError(formElement, inputElement, obj) {
   const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
   inputElement.classList.remove(obj.inputErrorClass);
   errorElement.classList.remove(obj.errorClass);
   errorElement.textContent = '';
 };
-
+//Проверяет инпуты на валидность
 function checkInputValidity(formElement, inputElement, obj, inputList) {
   const formSubmitButton = formElement.querySelector(obj.submitButtonSelector);
 
   if (inputElement.validity.valid) {
     hideInputError(formElement, inputElement, obj);
-    setSubmitButtonState(setIsValid(inputList), formSubmitButton);
+    setSubmitButtonState(setIsValid(inputList), formSubmitButton, obj.inactiveButtonClass);
 
 
   } else {
 
     showInputError(formElement, inputElement, inputElement.validationMessage, obj);
-    setSubmitButtonState(setIsValid(inputList), formSubmitButton);
+    setSubmitButtonState(setIsValid(inputList), formSubmitButton, obj.inactiveButtonClass);
 
   }
 };
-
+// Вешает слушатели на инпуты(перебирает из списка всех инпутов)
 function setEventListeners(formElement, inputList, obj) {
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
      checkInputValidity(formElement, inputElement, obj, inputList); 
+
     });
   });
 };
-
+// Из всех форм находит инпуты и вешает на них setEventListeners
 function enableValidation(obj) {
-//   const formList = Array.from(document.querySelectorAll('.popup__form')); 
-//   formList.forEach((formElement) => {
-//   formElement.addEventListener('submit', (evt) => {
-//     evt.preventDefault();
-//   })
-    
-//     setEventListeners(formElement);
-// })
-
-
 
 const formList = Array.from(document.querySelectorAll(obj.formSelector));
 formList.forEach((formElement) => {
@@ -61,7 +52,7 @@ formList.forEach((formElement) => {
 
 
 }; 
-
+// Проверяет на валидность инпуты, если хотябы 1 инпут не валиден => false
 function setIsValid(buttons) {
   return buttons.every((input) => {
     return input.validity.valid;
@@ -69,25 +60,32 @@ function setIsValid(buttons) {
 }
 
 // enableValidation()
-
-function setSubmitButtonState(isFormValid, addButton) {
+// Если инпуты валидны то кнопка черная
+function setSubmitButtonState(isFormValid, button, inactiveButtonClass) {
   if (isFormValid) {
  
-    addButton.removeAttribute('disabled');
-    addButton.classList.remove('popup__submit_disabled');
+    button.removeAttribute('disabled');
+    button.classList.remove(inactiveButtonClass);
   } else {
 
-    addButton.setAttribute('disabled', true);
-    addButton.classList.add('popup__submit_disabled');
-  }
+    button.setAttribute('disabled', true);
+    button.classList.add(inactiveButtonClass);
+
+    }
+
 }
 
+
+
+// Вызываем функцию и в нем объект
 
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: '.popup__submit_disabled',
+  inactiveButtonClass: 'popup__submit_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
 }); 
+
+

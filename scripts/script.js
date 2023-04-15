@@ -103,7 +103,10 @@ function closePopup(popup) {
 function editImages() {
   openPopup(imageAddPopup);
 
-  setSubmitButtonState(false, imageAddPopupButton);
+  setSubmitButtonState(false, imageAddPopupButton, 'popup__submit_disabled');
+  
+
+
 }
 
 
@@ -198,11 +201,10 @@ imageProfileForm.addEventListener('submit', (e) => {
     link: srcInput.value
    });
 
-  
-
    renderCard(card);
    resetModalForm()
   closePopup(imageAddPopup);
+  
 
 })
 
