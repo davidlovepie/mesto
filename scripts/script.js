@@ -18,9 +18,7 @@ const profileEdit = page.querySelector('.popup_type_profile');
 const imageEdit = page.querySelector('.profile__add');
 const imageAddPopup = page.querySelector('.popup_type_images');
 const imageAddPopupButton = imageAddPopup.querySelector('.popup__submit');
-// const profileClose = page.querySelector('.popup__close-button_type_profile');
-// const imagesClose = page.querySelector('.popup__close-button_type_images'); 
-// const enlargeClose = page.querySelector('.popup__close-button_type_enlarge'); 
+
 const titleInput = document.querySelector('input[name="titleInput"]');
 const srcInput = document.querySelector('input[name="srcInput"]');
 
@@ -110,45 +108,6 @@ function editImages() {
 }
 
 
-// добавление картинок
-function addImage(cardData) {
-  const cardElement = elementTemplate.querySelector('.elements__item').cloneNode(true);
-
-  const elementTitle = cardElement.querySelector('.elements__title');
-  const elementImage =  cardElement.querySelector('.elements__image');
-
-// увеличить картинки, передаем из темплейта в попап   
-  elementImage.addEventListener('click', () => {
-    
-    openPopup(imageEnlargePopup);
-    popupTitle.textContent = elementTitle.textContent;
-   
-    popupEnlarge.src = elementImage.src;
-    popupEnlarge.alt = cardData.name;
-  });
-
-  
-
-  elementTitle.textContent = cardData.name;
-  elementImage.src = cardData.link;
-  elementImage.alt = cardData.name;
-
-
-  const buttonLike = cardElement.querySelector('.elements__like-button');
-  const buttonDelete = cardElement.querySelector('.elements__delete');
-
-  buttonDelete.addEventListener('click', () => {
-    const parent = buttonDelete.closest('.elements__item');
-    parent.remove();
-  });
-  
-  buttonLike.addEventListener('click', () => {
-    toggleLike(buttonLike);
-  });
-  
-  return cardElement;
-}
-
 function renderCard(cardElement){
 
   elementsList.prepend(cardElement);
@@ -156,12 +115,7 @@ function renderCard(cardElement){
 
 
 
-// Удалить карточку через родителя
-// function removeImage () {
-//   const child = document.querySelector('.elements__delete');
-//   const parent = child.closest('.elements__item');
-//   parent.remove();
-// } 
+
 
 
 // Лайки активируются
@@ -171,17 +125,7 @@ function toggleLike(button){
 
 }
 
-// profileClose.addEventListener('click',() => {
-//   closePopup(profileEdit);
-// })
 
-// imagesClose.addEventListener('click',() => {
-//   closePopup(imageAddPopup);
-// })
-
-// enlargeClose.addEventListener('click',() => {
-//   closePopup(imageEnlargePopup);
-// })
 
 
 
@@ -196,12 +140,14 @@ profileEditForm.addEventListener('submit', (e) => {
 
 imageProfileForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const card =  addImage({
-    name: titleInput.value,
-    link: srcInput.value
-   });
+  const card = new Card(
+    titleInput.value, 
+    srcInput.value, 
+    '.element-template', 
+    openPopup
+    );
 
-   renderCard(card);
+   renderCard(card.getCard());
    resetModalForm()
   closePopup(imageAddPopup);
   
@@ -217,9 +163,9 @@ function resetModalForm(){
 // Использовал универсальную функцию, нужно повторить функции 
 
 initialCards.forEach(function (obj) {
-   const card = addImage(obj);
+   const card = new Card(obj.name, obj.link, '.element-template', openPopup);
 
-renderCard(card);
+renderCard(card.getCard());
 
 })
 
