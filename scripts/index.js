@@ -1,3 +1,8 @@
+import {Card} from './Card.js';
+
+import {FormValidator} from './FormValidator.js';
+
+
 const page = document.querySelector('.page');
 const popupGeneral = page.querySelector('.popup');
 const closeButtons = page.querySelectorAll('.popup__close-button');

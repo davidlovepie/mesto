@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(obj, formElement) {
     this.obj = obj;
     this.formElement = formElement;
@@ -7,7 +7,7 @@ class FormValidator {
     
   }
 
-  
+
   // showMeHowClassWorks = ()=>{
   //   console.log('Вот так!')
   //   console.log(this.formElement)
