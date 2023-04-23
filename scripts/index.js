@@ -25,8 +25,23 @@ const srcInput = document.querySelector('input[name="srcInput"]');
 const elementsList = document.querySelector('.elements__list');
 const elementTemplate = document.querySelector('.element-template').content;
 
+const validationProfile = new FormValidator({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+}, profileEditForm)
 
-
+const validationImage = new FormValidator({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+}, imageProfileForm)
 
 
 const initialCards = [
@@ -101,9 +116,7 @@ function closePopup(popup) {
 function editImages() {
   openPopup(imageAddPopup);
 
-  setSubmitButtonState(false, imageAddPopupButton, 'popup__submit_disabled');
-  
-
+  validationImage.disableButton()
 
 }
 
@@ -179,6 +192,8 @@ editButton.addEventListener('click', editProfile);
 
 imageEdit.addEventListener('click', editImages);
 
+validationProfile.enableValidation()
+validationImage.enableValidation()
 
 // const obj = {
 //   name: 'Девид',
