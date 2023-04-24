@@ -1,12 +1,13 @@
+import {openPopup} from './utils.js';
+
 export class Card {
-  constructor(name, link, templateSelector, openPopup){
+  constructor(name, link, templateSelector){
     this.name = name;
     this.link = link;
     this.elementTemplate = document.querySelector(templateSelector).content;
     this.cardElement = this.elementTemplate.querySelector('.elements__item').cloneNode(true);
     this.elementTitle = this.cardElement.querySelector('.elements__title');
     this.elementImage =  this.cardElement.querySelector('.elements__image');
-    this.openPopup = openPopup;
     this.imageEnlargePopup = document.querySelector('.popup_type_enlarge');
     this.popupTitle = this.imageEnlargePopup.querySelector('.popup__title');
     this.popupEnlarge = this.imageEnlargePopup.querySelector('.popup__image');
@@ -25,6 +26,7 @@ _addImage = ()=> {
 _setListeners = ()=> {
 
   this.setEventListenerEnlarge()
+  
   this.setEventListenerRemove()
   this.setEventListenerLike()
 
@@ -34,6 +36,7 @@ setEventListenerEnlarge = ()=> {
   this.elementImage.addEventListener('click', () => {
     
     openPopup(this.imageEnlargePopup);
+
     this.popupTitle.textContent = this.elementTitle.textContent;
    
     this.popupEnlarge.src = this.elementImage.src;

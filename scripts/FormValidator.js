@@ -7,6 +7,18 @@ export class FormValidator {
     
   }
 
+  inputErrorReset = () => {
+
+    this.inputList.forEach((inputElement) => {
+  
+      this._hideInputError(inputElement);
+     
+    });
+
+    this.formElement.reset()
+    
+  
+  }
 
   // showMeHowClassWorks = ()=>{
   //   console.log('Вот так!')
@@ -61,7 +73,6 @@ _hideInputError = (inputElement)=>{
   errorElement.textContent = '';
 
 };
-
 
 
 _checkInputValidity = (inputElement) => {
