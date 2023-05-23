@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-  <link rel="stylesheet" href="./pages/index.css">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Девид Фан">
@@ -13,11 +13,11 @@
 <body class="page">
 
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="./images/image.jpg" alt="Аватар профиля">
+      <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Аватар профиля">
       <div class="profile__information">
         <div class="profile__container">
           <h1 class="profile__author">Жак-Ив Кусто</h1>
@@ -87,8 +87,6 @@
       <h2 class="popup__title popup__title_type_enlarge">123</h2>
     </div>
   </div>
-
-  <script type="module" src="./scripts/index.js"></script>
 </body>
 
 </html>

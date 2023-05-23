@@ -1,7 +1,5 @@
-import {openPopup} from './utils.js';
-
 export class Card {
-  constructor(name, link, templateSelector){
+  constructor(name, link, templateSelector, handleCardClick){
     this.name = name;
     this.link = link;
     this.elementTemplate = document.querySelector(templateSelector).content;
@@ -13,6 +11,7 @@ export class Card {
     this.popupEnlarge = this.imageEnlargePopup.querySelector('.popup__image');
     this.buttonDelete = this.cardElement.querySelector('.elements__delete');
     this.buttonLike = this.cardElement.querySelector('.elements__like-button');
+    this.handleCardClick = handleCardClick;
   }
 
 _addImage = ()=> {
@@ -35,12 +34,8 @@ _setListeners = ()=> {
 setEventListenerEnlarge = ()=> {
   this.elementImage.addEventListener('click', () => {
     
-    openPopup(this.imageEnlargePopup);
+    this.handleCardClick(this.elementTitle.textContent, this.elementImage.src);
 
-    this.popupTitle.textContent = this.elementTitle.textContent;
-   
-    this.popupEnlarge.src = this.elementImage.src;
-    this.popupEnlarge.alt = this.name;
   });
 }
 
