@@ -16,50 +16,50 @@ export class Card {
   
   }
 
-_addImage = ()=> {
+  _addImage = ()=> {
   
- this.elementTitle.textContent = this.name;
- this.elementImage.src = this.link;
- this.elementImage.alt = this.name;
+    this.elementTitle.textContent = this.name;
+    this.elementImage.src = this.link;
+    this.elementImage.alt = this.name;
 
-} 
+  } 
 
-_setListeners = ()=> {
+  _setListeners = ()=> {
 
-  this.setEventListenerEnlarge()
-  this.setEventListenerRemove()
-  this.setEventListenerLike()
+    this.setEventListenerEnlarge()
+    this.setEventListenerRemove()
+    this.setEventListenerLike()
 
 }
 
-setEventListenerEnlarge = ()=> {
-  this.elementImage.addEventListener('click', () => {
+  setEventListenerEnlarge = ()=> {
+      this.elementImage.addEventListener('click', () => {
     
-    this.handleCardClick(this.elementTitle.textContent, this.elementImage.src);
+      this.handleCardClick(this.elementTitle.textContent, this.elementImage.src);
 
   });
 }
 
-setEventListenerRemove = ()=> {
+  setEventListenerRemove = ()=> {
   this.buttonDelete.addEventListener('click', () => {
     const parent = this.buttonDelete.closest('.elements__item');
     parent.remove();
   });
 }
 
-setEventListenerLike = ()=> {
-  this.buttonLike.addEventListener('click', () => {
+  setEventListenerLike = ()=> {
+    this.buttonLike.addEventListener('click', () => {
     this.buttonLike.classList.toggle('elements__like-button_active');
   });
 }
 
 
 
-getCard = ()=>{
-  this._addImage()
-  this._setListeners()
+  getCard = ()=>{
+    this._addImage()
+    this._setListeners()
   
-  return this.cardElement;
+   return this.cardElement;
 
 }
 } 

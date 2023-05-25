@@ -43,7 +43,7 @@ const section = new Section ({
 
 section.renderCards()
  
-const profileForm = new PopupWithForm('.popup_type_profile', editProfileForm);
+const profileForm = new PopupWithForm('.popup_type_profile', handleProfileFormSubmit);
 
 profileForm.setEventListeners();
 
@@ -110,7 +110,7 @@ function toggleLike(button){
 
 }
 
-function editProfileForm (e) {
+function handleProfileFormSubmit (e) {
   e.preventDefault();
 
   profileInfo.setUserInfo({name:nameInput.value, about:aboutInput.value})

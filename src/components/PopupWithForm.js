@@ -6,23 +6,23 @@ constructor(selector, submitter) {
     super(selector);
     this.submitter = submitter;
     this.inputList = Array.from(this.popup.querySelectorAll('input'))
-this.form = this.popup.querySelector('.popup__form')
+    this.form = this.popup.querySelector('.popup__form')
 }
 
 
-_getInputValues = ()=> {
+    _getInputValues = ()=> {
 
-const inputValues = {};
+    const inputValues = {};
 
-this.inputList.forEach((inputElement)=>{
+    this.inputList.forEach((inputElement)=>{
     inputValues[inputElement.name] = inputElement.value;
-})
+    })
 
-return inputValues;
+    return inputValues;
 
-}
+    }
 
-setEventListeners() {
+    setEventListeners() {
 
     super.setEventListeners();
 
@@ -32,11 +32,11 @@ setEventListeners() {
     }
 
 
-close() {
+    close() {
 
-super.close();
+    super.close();
 
-this.form.reset();
+    this.form.reset();
 
 
 }
