@@ -12,6 +12,8 @@ export class Card {
     this.buttonDelete = this.cardElement.querySelector('.elements__delete');
     this.buttonLike = this.cardElement.querySelector('.elements__like-button');
     this.handleCardClick = handleCardClick;
+
+  
   }
 
 _addImage = ()=> {
@@ -25,7 +27,6 @@ _addImage = ()=> {
 _setListeners = ()=> {
 
   this.setEventListenerEnlarge()
-  
   this.setEventListenerRemove()
   this.setEventListenerLike()
 
@@ -57,7 +58,7 @@ setEventListenerLike = ()=> {
 getCard = ()=>{
   this._addImage()
   this._setListeners()
-
+  
   return this.cardElement;
 
 }

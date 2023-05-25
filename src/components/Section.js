@@ -1,3 +1,5 @@
+import { Card } from "./Card";
+
 export default class Section {
   constructor({items, renderer}, selector){
     this.items = items;
@@ -18,7 +20,7 @@ export default class Section {
   addItem = (cardElement)=> {
 
     this.elementsList.prepend(cardElement);
-
+    
   }
 
 }

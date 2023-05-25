@@ -7,7 +7,7 @@ export class FormValidator {
     
   }
 
-  inputErrorReset = () => {
+  getInputErrorReset = () => {
 
     this.inputList.forEach((inputElement) => {
   
