@@ -104,7 +104,7 @@ _setEventListeners = ()=> {
 
 enableValidation = ()=> {
   
-  this._setEventListeners()
+    this._setEventListeners()
 
 }
 
