@@ -12,21 +12,24 @@ constructor(selector, submitter) {
 
     _getInputValues = ()=> {
 
-    const inputValues = {};
+        const inputValues = {};
 
-    this.inputList.forEach((inputElement)=>{
-    inputValues[inputElement.name] = inputElement.value;
+        this.inputList.forEach((inputElement)=>{
+        inputValues[inputElement.name] = inputElement.value;
     })
 
-    return inputValues;
+        return inputValues;
 
     }
 
     setEventListeners() {
 
-    super.setEventListeners();
+        super.setEventListeners();
 
-    this.form.addEventListener('submit', this.submitter);
+        this.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.submitter(this._getInputValues())
+        });
 
 
     }
@@ -34,9 +37,9 @@ constructor(selector, submitter) {
 
     close() {
 
-    super.close();
+        super.close();
 
-    this.form.reset();
+        this.form.reset();
 
 
 }
