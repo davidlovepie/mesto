@@ -13,17 +13,19 @@ export default class UserInfo {
       about: this.about.textContent
     
     }
-
-    
-
-
   }
 
-  setUserInfo = ({ name, about }) => {
+  getUserId = () => {
+
+    return this._id;
+
+  }
+  
+  setUserInfo = ({ name, about, _id }) => {
 
     this.name.textContent = name;
     this.about.textContent = about;
-
+    this._id = _id;
   }
   
   

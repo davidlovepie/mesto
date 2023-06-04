@@ -1,15 +1,15 @@
 import { Card } from "./Card";
 
 export default class Section {
-  constructor({items, renderer}, selector){
-    this.items = items;
+  constructor({renderer}, selector){
+
     this.renderer = renderer;
     this.elementsList = document.querySelector(selector);
   }
 
-  renderCards = ()=> {
+  renderCards = (array) => {
 
-    this.items.forEach( (obj)=> {       
+    array.reverse().forEach( (obj)=> {       
      
       this.addItem(this.renderer(obj));
    

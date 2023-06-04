@@ -12,9 +12,11 @@ import PopupWithImage from '../components/PopupWithImage.js';
 
 import UserInfo from '../components/UserInfo.js';
 
-import { initialCards, editButton, nameInput, aboutInput, profileEditForm, imageProfileForm, imageEdit, config } from '../utils/constants.js';
+import { editButton, nameInput, aboutInput, profileEditForm, imageProfileForm, imageEdit, config } from '../utils/constants.js';
 
+import { api } from '../components/Api.js';
 
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
 
 const validationProfile = new FormValidator(config, profileEditForm)
@@ -27,11 +29,10 @@ enlargeImage.setEventListeners();
 
 
 const section = new Section({
-  items: initialCards,
   renderer: createCard
 }, '.elements__list')
 
-section.renderCards()
+
 
 const profileForm = new PopupWithForm('.popup_type_profile', handleProfileFormSubmit);
 
@@ -45,27 +46,62 @@ imageForm.setEventListeners();
 
 const profileInfo = new UserInfo({ name: '.profile__author', about: '.profile__about' });
 
+const confirmForm = new PopupWithConfirm('.popup_type_delete', handleConfirmFormSubmit);
 
+confirmForm.setEventListeners();
+
+function openConfirmForm(id, cardElement) {
+    confirmForm.getId(id)
+    confirmForm.getCard(cardElement)
+    confirmForm.open()
+}
 
 function createCard(obj) {
 
-  const card = new Card(obj.name, obj.link, '.element-template', handleCardClick);
+  const card = new Card(obj.name, obj.link, obj.likes, obj._id, obj.owner._id, profileInfo.getUserId(), handleLike, handleDeleteLike, '.element-template', handleCardClick, openConfirmForm);
 
   return card.getCard()
 
 }
-
+// Сабмит формы
 function editImageForm(inputs) {
 
-  const card = createCard(inputs);
+  api.postCard(inputs)
+  .then((result) => {
+    const card = createCard(result);
 
-  section.addItem(card);
-  imageForm.close();
+    section.addItem(card);
+
+    imageForm.close();
+  })
+  
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  }); 
 
 }
 
 function handleCardClick(elementTitle, elementImage) {
   enlargeImage.open(elementTitle, elementImage)
+}
+
+    // const parent = this.buttonDelete.closest('.elements__item');
+    // parent.remove();
+
+
+function handleConfirmFormSubmit(id, cardElement) {
+
+api.deleteCard(id)
+.then((result) => {
+  cardElement.remove()
+  confirmForm.close()
+
+})
+.catch((err) => {
+  console.log(err, 'delete error'); // выведем ошибку в консоль
+}); 
+
+  
 }
 
 // Это поп ап профиля
@@ -97,14 +133,23 @@ function editImages() {
 
 function handleProfileFormSubmit(inputs) {
 
+  api.editProfileInfo(inputs)
+  .then((result) => {
+   profileInfo.setUserInfo(result)
+  })
+  
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  }); 
 
-  profileInfo.setUserInfo(inputs)
+  // profileInfo.setUserInfo(inputs)
   // authorName.textContent = nameInput.value;
   // authorAbout.textContent = aboutInput.value;
 
   profileForm.close();
 
 }
+
 
 // function editImageForm (e) {
 //   e.preventDefault();
@@ -136,3 +181,58 @@ validationImage.enableValidation()
 
 // const obj = {name:'alEsha', link:'wwwalesha'}
 // console.log(obj.name)
+
+// fetch('https://mesto.nomoreparties.co/v1/cohort-66/users/me', {
+//   headers: {
+//     authorization: '3ed8239e-8734-4aff-9406-f23bc2058906'
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+
+//   }); 
+
+  api.getInitialCards()
+  .then((result) => {
+    section.renderCards(result)
+console.log(result, 'initial')
+  })
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  }); 
+
+  api.getProfileInfo()
+  .then((result) => {
+    profileInfo.setUserInfo(result)
+    console.log(result)
+
+  })
+
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  });
+  
+  function handleLike(id) {
+    api.addLike(id)
+      .then((result) => {
+        console.log(result)
+      })
+      .catch((err) => {
+         console.log(err); // выведем ошибку в консоль
+       });
+  }
+
+  function handleDeleteLike(id) {
+    api.deleteLike(id)
+      .then((result) => {
+        console.log(result)
+      })
+      .catch((err) => {
+         console.log(err); // выведем ошибку в консоль
+       });
+  }
+
+ 
+
+
+ 

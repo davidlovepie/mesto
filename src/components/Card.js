@@ -1,5 +1,5 @@
 export class Card {
-  constructor(name, link, templateSelector, handleCardClick){
+  constructor(name, link, likes, _id, ownerId, userId, handleLike, handleDeleteLike, templateSelector, handleCardClick, openConfirmForm){
     this.name = name;
     this.link = link;
     this.elementTemplate = document.querySelector(templateSelector).content;
@@ -11,17 +11,32 @@ export class Card {
     this.popupEnlarge = this.imageEnlargePopup.querySelector('.popup__image');
     this.buttonDelete = this.cardElement.querySelector('.elements__delete');
     this.buttonLike = this.cardElement.querySelector('.elements__like-button');
+    this.elementLike = this.cardElement.querySelector('.elements__counter');
     this.handleCardClick = handleCardClick;
-
-  
+    this.likes = likes;
+    this.openConfirmForm = openConfirmForm;
+    this.id = _id;
+    this.ownerId = ownerId;
+    this.userId = userId;
+    this.handleLike = handleLike;
+    this.handleDeleteLike = handleDeleteLike;
   }
 
+
+
   _addImage = ()=> {
-  
+
+    if (this.ownerId != this.userId) {
+
+      this.buttonDelete.remove();
+
+    }   
+
     this.elementTitle.textContent = this.name;
     this.elementImage.src = this.link;
     this.elementImage.alt = this.name;
-
+    this.elementLike.textContent = this.likes.length;
+    this._checkLike();
   } 
 
   _setListeners = ()=> {
@@ -41,19 +56,31 @@ export class Card {
 }
 
   setEventListenerRemove = ()=> {
-  this.buttonDelete.addEventListener('click', () => {
-    const parent = this.buttonDelete.closest('.elements__item');
-    parent.remove();
+    this.buttonDelete.addEventListener('click', () => {
+    this.openConfirmForm(this.id, this.cardElement)
+
   });
 }
 
   setEventListenerLike = ()=> {
     this.buttonLike.addEventListener('click', () => {
-    this.buttonLike.classList.toggle('elements__like-button_active');
+    // this.buttonLike.classList.toggle('elements__like-button_active');
+    // if () {
+
+    // }
+      this.handleLike(this.id);
+      // this.handleDeleteLike(this.id);
   });
 }
 
+  _checkLike = () => {
 
+    if(this.likes.some(item =>item._id == this.userId)) {
+      this.buttonLike.classList.add('elements__like-button_active');
+    } 
+// console.log(this.likes.includes(this.userId), 'IF')
+// console.log(this.likes, 'likesarray')
+  }
 
   getCard = ()=>{
     this._addImage()
