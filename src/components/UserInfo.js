@@ -3,9 +3,15 @@ export default class UserInfo {
   constructor({ name, about }) {
     this.name = document.querySelector(name);
     this.about = document.querySelector(about);
-  
+    this.avatar = document.querySelector('.profile__avatar-update')
   }
   
+  updateAvatar = ({ avatar }) => {
+
+    this.avatar.src = avatar;
+
+  }
+
   getUserInfo = () => {
     return { 
 

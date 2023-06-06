@@ -65,11 +65,24 @@ export class Card {
   setEventListenerLike = ()=> {
     this.buttonLike.addEventListener('click', () => {
     // this.buttonLike.classList.toggle('elements__like-button_active');
-    // if () {
-
-    // }
-      this.handleLike(this.id);
-      // this.handleDeleteLike(this.id);
+    if ( this.buttonLike.classList.contains('elements__like-button_active')) {
+        this.handleDeleteLike(this.id)
+        .then(result => {
+          this.buttonLike.classList.remove('elements__like-button_active')
+          this.elementLike.textContent = result.likes.length;
+        });
+        
+    } else {
+        this.handleLike(this.id)
+        .then(result => {
+          this.buttonLike.classList.add('elements__like-button_active')
+          this.elementLike.textContent = result.likes.length;
+        });
+        
+        
+    }
+     
+      
   });
 }
 

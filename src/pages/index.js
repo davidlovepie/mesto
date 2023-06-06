@@ -12,16 +12,18 @@ import PopupWithImage from '../components/PopupWithImage.js';
 
 import UserInfo from '../components/UserInfo.js';
 
-import { editButton, nameInput, aboutInput, profileEditForm, imageProfileForm, imageEdit, config } from '../utils/constants.js';
+import { editButton, nameInput, aboutInput, profileEditForm, imageProfileForm, imageEdit, config, editAvatar, profileAvatarForm } from '../utils/constants.js';
 
 import { api } from '../components/Api.js';
 
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
 
-const validationProfile = new FormValidator(config, profileEditForm)
+const validationProfile = new FormValidator(config, profileAvatarForm)
 
 const validationImage = new FormValidator(config, imageProfileForm)
+
+const validationAvatar = new FormValidator(config, imageProfileForm)
 
 const enlargeImage = new PopupWithImage('.popup_type_enlarge');
 
@@ -50,6 +52,10 @@ const confirmForm = new PopupWithConfirm('.popup_type_delete', handleConfirmForm
 
 confirmForm.setEventListeners();
 
+const newAvatar = new PopupWithForm('.popup_type_update-avatar', handleAvatarSubmit)
+
+newAvatar.setEventListeners()
+
 function openConfirmForm(id, cardElement) {
     confirmForm.getId(id)
     confirmForm.getCard(cardElement)
@@ -64,7 +70,7 @@ function createCard(obj) {
 
 }
 // Сабмит формы
-function editImageForm(inputs) {
+function editImageForm(inputs, button) {
 
   api.postCard(inputs)
   .then((result) => {
@@ -77,7 +83,17 @@ function editImageForm(inputs) {
   
   .catch((err) => {
     console.log(err); // выведем ошибку в консоль
-  }); 
+  })
+  .finally(()=>{
+    button.textContent = 'Создать'
+    }); 
+
+}
+
+function editProfileAvatar() {
+
+  newAvatar.open();
+
 
 }
 
@@ -131,7 +147,7 @@ function editImages() {
 
 // }
 
-function handleProfileFormSubmit(inputs) {
+function handleProfileFormSubmit(inputs, button) {
 
   api.editProfileInfo(inputs)
   .then((result) => {
@@ -140,7 +156,11 @@ function handleProfileFormSubmit(inputs) {
   
   .catch((err) => {
     console.log(err); // выведем ошибку в консоль
-  }); 
+  })
+  
+  .finally(()=>{
+    button.textContent = 'Сохранить'
+    }); 
 
   // profileInfo.setUserInfo(inputs)
   // authorName.textContent = nameInput.value;
@@ -169,6 +189,7 @@ function handleProfileFormSubmit(inputs) {
 
 // imageProfileForm.addEventListener('submit', editImageForm)
 
+editAvatar.addEventListener('click', editProfileAvatar);
 
 editButton.addEventListener('click', editProfile);
 
@@ -176,6 +197,7 @@ imageEdit.addEventListener('click', editImages);
 
 validationProfile.enableValidation()
 validationImage.enableValidation()
+validationAvatar.enableValidation()
 
 // console.log({name:'alEsha', link:'wwwalesha'}.name);
 
@@ -204,7 +226,8 @@ console.log(result, 'initial')
   api.getProfileInfo()
   .then((result) => {
     profileInfo.setUserInfo(result)
-    console.log(result)
+    profileInfo.updateAvatar(result)
+    console.log('getProfileInfo', result)
 
   })
 
@@ -213,9 +236,10 @@ console.log(result, 'initial')
   });
   
   function handleLike(id) {
-    api.addLike(id)
+    return api.addLike(id)
       .then((result) => {
-        console.log(result)
+        return result
+        
       })
       .catch((err) => {
          console.log(err); // выведем ошибку в консоль
@@ -223,16 +247,30 @@ console.log(result, 'initial')
   }
 
   function handleDeleteLike(id) {
-    api.deleteLike(id)
+    return api.deleteLike(id)
       .then((result) => {
-        console.log(result)
+       return result
       })
       .catch((err) => {
          console.log(err); // выведем ошибку в консоль
        });
   }
 
- 
+  function handleAvatarSubmit(avatar, button) {
+
+  api.editProfileAvatar(avatar)
+  .then((result) => {
+    profileInfo.updateAvatar(result)
+   })
+   .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+    })
+  .finally(()=>{
+    button.textContent = 'Сохранить'
+    })
+
+    newAvatar.close();    
+  }
 
 
  

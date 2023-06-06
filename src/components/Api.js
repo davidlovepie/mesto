@@ -5,6 +5,18 @@ class Api {
    
   }
 
+  editProfileAvatar({ avatar }) {
+
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+       method: 'PATCH',
+       headers: this.headers,
+       body: JSON.stringify({ avatar })
+     })
+ 
+     .then(this.checkResponse);
+     
+   }
+
   deleteLike(_id) {
 
     return fetch(`${this.baseUrl}/cards/${_id}/likes`, {

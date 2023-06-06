@@ -17,7 +17,9 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Аватар профиля">
+      <button class="profile__avatar">
+        <img class="profile__avatar-update" src="" alt="Аватар профиля">
+      </button>
       <div class="profile__information">
         <div class="profile__container">
           <h1 class="profile__author"></h1>
@@ -43,9 +45,11 @@
       <img class="elements__image" src="#" alt="">
       <div class="elements__info">
         <h2 class="elements__title"></h2>
+<div class="elements__like-counter">
         <button type="button" class="elements__like-button"></button>
-      <div class="elements__counter">0</div>
+        <div class="elements__counter">0</div>
       </div>
+    </div>
     </li>
   </template>
 
@@ -90,11 +94,25 @@
   </div>
 
   <div class="popup popup_type_delete">
-    <div class="popup__container">
+    <div class="popup__container popup__container_type_delete">
       <button type="button" class="popup__close-button popup__close-button_type_delete"></button>
-      <h2 class="popup__title">Вы уверены?</h2>
+      <h2 class="popup__title popup__title_type_delete">Вы уверены?</h2>
       <form class="popup__form" name="imageDelete">
-          <button class="popup__submit" type="submit">Да</button>
+          <button class="popup__submit popup__submit_type_delete" type="submit">Да</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_update-avatar">
+    <div class="popup__container popup__container_type_update-avatar">
+      <button type="button" class="popup__close-button popup__close-button_type_delete"></button>
+      <h2 class="popup__title popup__title_type_update-avatar">Обновить аватар</h2>
+      <form class="popup__form" name="avatarUpdate">
+        <fieldset class="popup__info">
+          <input class="popup__input" name="avatar" type="url" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error avatar-error" ></span>
+          <button class="popup__submit popup__submit_disabled" disabled type="submit">Сохранить</button>
         </fieldset>
       </form>
     </div>

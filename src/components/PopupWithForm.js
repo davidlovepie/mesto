@@ -7,6 +7,7 @@ constructor(selector, submitter) {
     this.submitter = submitter;
     this.inputList = Array.from(this.popup.querySelectorAll('input'))
     this.form = this.popup.querySelector('.popup__form')
+    this.button = this.popup.querySelector('.popup__submit')
 }
 
 
@@ -28,7 +29,8 @@ constructor(selector, submitter) {
 
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
-            this.submitter(this._getInputValues())
+            this.button.textContent = 'Сохранение...'
+            this.submitter(this._getInputValues(), this.button)
         });
 
 
