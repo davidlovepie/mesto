@@ -217,7 +217,6 @@ validationAvatar.enableValidation()
   api.getInitialCards()
   .then((result) => {
     section.renderCards(result)
-console.log(result, 'initial')
   })
   .catch((err) => {
     console.log(err); // выведем ошибку в консоль
@@ -227,8 +226,7 @@ console.log(result, 'initial')
   .then((result) => {
     profileInfo.setUserInfo(result)
     profileInfo.updateAvatar(result)
-    console.log('getProfileInfo', result)
-
+   
   })
 
   .catch((err) => {
