@@ -26,7 +26,7 @@ export class Card {
 
   _addImage = ()=> {
 
-    if (this.ownerId != this.userId) {
+    if (this.ownerId !== this.userId) {
 
       this.buttonDelete.remove();
 
@@ -62,33 +62,35 @@ export class Card {
   });
 }
 
-  setEventListenerLike = ()=> {
-    this.buttonLike.addEventListener('click', () => {
-    // this.buttonLike.classList.toggle('elements__like-button_active');
+  setLike = ()=>{
+
     if ( this.buttonLike.classList.contains('elements__like-button_active')) {
-        this.handleDeleteLike(this.id)
-        .then(result => {
-          this.buttonLike.classList.remove('elements__like-button_active')
-          this.elementLike.textContent = result.likes.length;
-        });
-        
-    } else {
-        this.handleLike(this.id)
-        .then(result => {
-          this.buttonLike.classList.add('elements__like-button_active')
-          this.elementLike.textContent = result.likes.length;
-        });
-        
-        
-    }
-     
+      this.handleDeleteLike(this.id)
+      .then(result => {
+        this.buttonLike.classList.remove('elements__like-button_active')
+        this.elementLike.textContent = result.likes.length;
+      });
       
-  });
+  } else {
+      this.handleLike(this.id)
+      .then(result => {
+        this.buttonLike.classList.add('elements__like-button_active')
+        this.elementLike.textContent = result.likes.length;
+      });
+      
+      
+  }
+
+  }
+
+  setEventListenerLike = ()=> {
+
+    this.buttonLike.addEventListener('click', this.setLike);
 }
 
   _checkLike = () => {
 
-    if(this.likes.some(item =>item._id == this.userId)) {
+    if(this.likes.some(item =>item._id === this.userId)) {
       this.buttonLike.classList.add('elements__like-button_active');
     } 
 // console.log(this.likes.includes(this.userId), 'IF')

@@ -8,8 +8,8 @@ constructor(selector,submitter) {
  this.submitter = submitter
  this.form = this.popup.querySelector('.popup__form')
 }
-getCard(cardElement){
-  this.cardElement = cardElement;
+getItem(itemElement){
+  this.itemElement = itemElement;
 }
 getId(id) {
   this.id = id;
@@ -21,7 +21,7 @@ setEventListeners() {
 
   this.form.addEventListener('submit', (e) => {
       e.preventDefault();
-      this.submitter(this.id, this.cardElement) 
+      this.submitter(this.id, this.itemElement) 
   });
 
 

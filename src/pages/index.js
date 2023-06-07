@@ -12,25 +12,32 @@ import PopupWithImage from '../components/PopupWithImage.js';
 
 import UserInfo from '../components/UserInfo.js';
 
-import { editButton, nameInput, aboutInput, profileEditForm, imageProfileForm, imageEdit, config, editAvatar, profileAvatarForm } from '../utils/constants.js';
-
-import { api } from '../components/Api.js';
+import { popupProfileOpenButton, nameInput, aboutInput, profileEditForm, imageProfileForm, imageEdit, config, avatarEditBtutton, profileAvatarForm } from '../utils/constants.js';
 
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
+import { Api } from '../components/Api.js';
 
-const validationProfile = new FormValidator(config, profileAvatarForm)
+const validationProfile = new FormValidator(config, profileEditForm)
 
 const validationImage = new FormValidator(config, imageProfileForm)
 
-const validationAvatar = new FormValidator(config, imageProfileForm)
+const validationAvatar = new FormValidator(config, profileAvatarForm)
 
 const enlargeImage = new PopupWithImage('.popup_type_enlarge');
 
 enlargeImage.setEventListeners();
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66',
+  headers: {
+    authorization: '3ed8239e-8734-4aff-9406-f23bc2058906',
+    'Content-Type': 'application/json'
+  }
 
-const section = new Section({
+}); 
+
+const cardsContainer = new Section({
   renderer: createCard
 }, '.elements__list')
 
@@ -56,9 +63,9 @@ const newAvatar = new PopupWithForm('.popup_type_update-avatar', handleAvatarSub
 
 newAvatar.setEventListeners()
 
-function openConfirmForm(id, cardElement) {
+function openConfirmForm(id, itemElement) {
     confirmForm.getId(id)
-    confirmForm.getCard(cardElement)
+    confirmForm.getItem(itemElement)
     confirmForm.open()
 }
 
@@ -76,7 +83,7 @@ function editImageForm(inputs, button) {
   .then((result) => {
     const card = createCard(result);
 
-    section.addItem(card);
+    cardsContainer.addItem(card);
 
     imageForm.close();
   })
@@ -140,12 +147,7 @@ function editImages() {
 }
 
 
-// Лайки активируются
-// function toggleLike(button) {
 
-//   button.classList.toggle('elements__like-button_active');
-
-// }
 
 function handleProfileFormSubmit(inputs, button) {
 
@@ -162,36 +164,17 @@ function handleProfileFormSubmit(inputs, button) {
     button.textContent = 'Сохранить'
     }); 
 
-  // profileInfo.setUserInfo(inputs)
-  // authorName.textContent = nameInput.value;
-  // authorAbout.textContent = aboutInput.value;
+
 
   profileForm.close();
 
 }
 
 
-// function editImageForm (e) {
-//   e.preventDefault();
-//   const card = new Card(
-//     titleInput.value, 
-//     srcInput.value, 
-//     '.element-template', 
-//     imageForm.open()
-//     );
 
-//     section.addItem(card.getCard());
-//     imageForm.close();
+avatarEditBtutton.addEventListener('click', editProfileAvatar);
 
-
-// }
-
-
-// imageProfileForm.addEventListener('submit', editImageForm)
-
-editAvatar.addEventListener('click', editProfileAvatar);
-
-editButton.addEventListener('click', editProfile);
+popupProfileOpenButton.addEventListener('click', editProfile);
 
 imageEdit.addEventListener('click', editImages);
 
@@ -199,36 +182,15 @@ validationProfile.enableValidation()
 validationImage.enableValidation()
 validationAvatar.enableValidation()
 
-// console.log({name:'alEsha', link:'wwwalesha'}.name);
-
-// const obj = {name:'alEsha', link:'wwwalesha'}
-// console.log(obj.name)
-
-// fetch('https://mesto.nomoreparties.co/v1/cohort-66/users/me', {
-//   headers: {
-//     authorization: '3ed8239e-8734-4aff-9406-f23bc2058906'
-//   }
-// })
-//   .then(res => res.json())
-//   .then((result) => {
-
-//   }); 
-
-  api.getInitialCards()
-  .then((result) => {
-    section.renderCards(result)
+  Promise.all([
+    api.getInitialCards(),
+    api.getProfileInfo(),
+  ])
+  .then(([resultInitial, resultInformation]) => {
+    cardsContainer.renderCards(resultInitial)
+    profileInfo.setUserInfo(resultInformation)
+    profileInfo.updateAvatar(resultInformation)
   })
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  }); 
-
-  api.getProfileInfo()
-  .then((result) => {
-    profileInfo.setUserInfo(result)
-    profileInfo.updateAvatar(result)
-   
-  })
-
   .catch((err) => {
     console.log(err); // выведем ошибку в консоль
   });
@@ -259,6 +221,7 @@ validationAvatar.enableValidation()
   api.editProfileAvatar(avatar)
   .then((result) => {
     profileInfo.updateAvatar(result)
+    newAvatar.close();
    })
    .catch((err) => {
       console.log(err); // выведем ошибку в консоль
@@ -266,9 +229,7 @@ validationAvatar.enableValidation()
   .finally(()=>{
     button.textContent = 'Сохранить'
     })
-
-    newAvatar.close();    
-  }
+   }
 
 
  
