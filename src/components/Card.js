@@ -30,7 +30,7 @@ export class Card {
 
       this.buttonDelete.remove();
 
-    }   
+    }  
 
     this.elementTitle.textContent = this.name;
     this.elementImage.src = this.link;
@@ -62,20 +62,31 @@ export class Card {
   });
 }
 
+  like = (count) => {
+    this.buttonLike.classList.add('elements__like-button_active')
+    this.elementLike.textContent = count;
+  } 
+
+  disLike = (count) => {
+    this.buttonLike.classList.remove('elements__like-button_active')
+    this.elementLike.textContent = count;
+  } 
+
+  
+
   setLike = ()=>{
 
     if ( this.buttonLike.classList.contains('elements__like-button_active')) {
       this.handleDeleteLike(this.id)
       .then(result => {
-        this.buttonLike.classList.remove('elements__like-button_active')
-        this.elementLike.textContent = result.likes.length;
+        this.disLike(result.likes.length);
       });
       
   } else {
+
       this.handleLike(this.id)
       .then(result => {
-        this.buttonLike.classList.add('elements__like-button_active')
-        this.elementLike.textContent = result.likes.length;
+        this.like(result.likes.length);
       });
       
       
@@ -93,6 +104,7 @@ export class Card {
     if(this.likes.some(item =>item._id === this.userId)) {
       this.buttonLike.classList.add('elements__like-button_active');
     } 
+
 // console.log(this.likes.includes(this.userId), 'IF')
 // console.log(this.likes, 'likesarray')
   }

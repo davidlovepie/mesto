@@ -81,6 +81,7 @@ function editImageForm(inputs, button) {
 
   api.postCard(inputs)
   .then((result) => {
+
     const card = createCard(result);
 
     cardsContainer.addItem(card);
@@ -154,6 +155,7 @@ function handleProfileFormSubmit(inputs, button) {
   api.editProfileInfo(inputs)
   .then((result) => {
    profileInfo.setUserInfo(result)
+   profileForm.close();
   })
   
   .catch((err) => {
@@ -163,10 +165,6 @@ function handleProfileFormSubmit(inputs, button) {
   .finally(()=>{
     button.textContent = 'Сохранить'
     }); 
-
-
-
-  profileForm.close();
 
 }
 
@@ -187,8 +185,8 @@ validationAvatar.enableValidation()
     api.getProfileInfo(),
   ])
   .then(([resultInitial, resultInformation]) => {
-    cardsContainer.renderCards(resultInitial)
     profileInfo.setUserInfo(resultInformation)
+    cardsContainer.renderCards(resultInitial)
     profileInfo.updateAvatar(resultInformation)
   })
   .catch((err) => {
@@ -226,7 +224,7 @@ validationAvatar.enableValidation()
    .catch((err) => {
       console.log(err); // выведем ошибку в консоль
     })
-  .finally(()=>{
+  .finally(() => {
     button.textContent = 'Сохранить'
     })
    }

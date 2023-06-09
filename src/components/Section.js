@@ -12,7 +12,7 @@ export default class Section {
     array.reverse().forEach( (obj)=> {       
      
       this.addItem(this.renderer(obj));
-   
+
    })
 
   }
